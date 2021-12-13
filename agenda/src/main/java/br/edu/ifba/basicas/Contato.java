@@ -12,31 +12,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToOne;;
 
-
+@Entity
 public class Contato implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
-
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	private String observacao;
 	
-
+	@OneToOne (cascade=CascadeType.PERSIST)
 	private Endereco endereco;
 	
-
+	@ManyToOne
+	@JoinColumn (name ="categoria_id", nullable=false)
 	private Categoria categoria;
 	
-
+	@OneToMany (cascade=CascadeType.PERSIST)
+	@JoinColumn (name ="contato_id")
 	private List<Telefone> telefones;
 
 	public Contato() {}
+	
 	
 	public Contato( String nome, String observacao, Endereco endereco, Categoria categoria) {
 		super();
@@ -87,12 +89,10 @@ public class Contato implements Serializable {
 		this.categoria = categoria;
 	}
 	
-	
-	
 	public List<Telefone> getTelefones() {
 		return telefones;
 	}
-
+	
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
@@ -111,15 +111,7 @@ public class Contato implements Serializable {
 			
 			this.getTelefones().add(telefone);
 			
-		}
-		
-		
-		
+		}	
 	}
-	
-	
-	
-	
-	
 	
 }

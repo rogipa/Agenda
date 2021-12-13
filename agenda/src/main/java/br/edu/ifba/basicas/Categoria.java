@@ -12,31 +12,25 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
+@Entity
 public class Categoria implements Serializable {
 
-	
-	public String toString() {
-		return nome ;
-	}
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	private String descricao;
 	
-
+	@OneToMany (mappedBy="categoria", cascade=CascadeType.ALL)
 	private List<Contato> contato;
 	
 	public Categoria() {}
 
 	public Categoria(String nome, String descricao) {
 		super();
-		
 		this.nome = nome;
 		this.descricao = descricao;
 	}
@@ -65,8 +59,6 @@ public class Categoria implements Serializable {
 		this.descricao = descricao;
 	}
 	
-	
-	
 	public List<Contato> getContato() {
 		return contato;
 	}
@@ -91,13 +83,10 @@ public class Categoria implements Serializable {
 			
 		}
 		
-		
-		
 	}
 	
-	
-	
-	
-	
+	public String toString() {
+		return nome ;
+	}	
 
 }
