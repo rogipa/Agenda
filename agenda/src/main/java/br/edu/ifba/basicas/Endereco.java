@@ -2,29 +2,28 @@ package br.edu.ifba.basicas;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
+
 public class Endereco implements Serializable {
 	
-	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
-
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private int id;
 	private String rua;
 	private String numero;
 	private String bairro;
 	private String cidade;
 	
-
+	@OneToOne (mappedBy="endereco")
 	private Contato contato;
 	
 	public Endereco() {}
@@ -116,12 +115,4 @@ public class Endereco implements Serializable {
 		return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", bairro=" + bairro + ", cidade="
 				+ cidade + ", contato=" + contato + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-
 }

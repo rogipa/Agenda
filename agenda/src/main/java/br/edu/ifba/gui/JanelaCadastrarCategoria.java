@@ -142,7 +142,7 @@ public class JanelaCadastrarCategoria extends JInternalFrame {
 
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("DescriÃ§Ã£o:");
+			lblNewLabel = new JLabel("Descrição:");
 			lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblNewLabel.setBounds(14, 56, 61, 16);
 		}

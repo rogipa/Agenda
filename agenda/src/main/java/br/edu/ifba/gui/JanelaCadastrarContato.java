@@ -81,7 +81,7 @@ public class JanelaCadastrarContato extends JInternalFrame {
 			jLabel4 = new JLabel();
 			jLabel4.setBounds(new Rectangle(46, 134, 38, 16));
 			jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
-			jLabel4.setText("NÃºmero:");
+			jLabel4.setText("Nº:");
 			jLabel3 = new JLabel();
 			jLabel3.setBounds(new Rectangle(28, 111, 56, 16));
 			jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -112,7 +112,7 @@ public class JanelaCadastrarContato extends JInternalFrame {
 			jContentPane.add(getCampoNumero(), null);
 			jContentPane.add(getBotaoCadastrar(), null);
 			
-			JLabel lblNewLabel = new JLabel("EndereÃ§o");
+			JLabel lblNewLabel = new JLabel("Endereço");
 			lblNewLabel.setBounds(152, 91, 61, 16);
 			jContentPane.add(lblNewLabel);
 			
