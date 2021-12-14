@@ -13,41 +13,44 @@ public class CategoriaDao {
 	
 	public void adiciona(Categoria categoria) {
 		
-
+		em.getTransaction().begin();
+		em.persist(categoria);
+		em.getTransaction().commit();
 		
 	}
 	
 	public Categoria procurarCategoriaId(int id) {
 		
-		return null;
+		return em.find(Categoria.class, id);
 		
 	}
 	
 	public List<Categoria> listarCategorias(){
 		
-		return null;
+		return em.createQuery("select c from Categoria c", Categoria.class).getResultList();
 		
 	}
 	
 	public void atualizarCategoria(Categoria c) {
 		
+		em.getTransaction().begin();
+		em.merge(c);
+		em.getTransaction().commit();
 	
 	}
 	
 	public void removerCategoriaId(Categoria c) {
 		
-
+		em.getTransaction().begin();
+		em.remove(c);
+		em.getTransaction().commit();
 		
 	}
 	
 	public List<Categoria> procurarCategoriaNome(String nome) {
 		
-		
-		
-		return null;
+		TypedQuery<Categoria> query = em.createQuery("SELECT c FROM Categoria c WHERE c.nome = :n", Categoria.class);
+		return query.setParameter("n", nome).getResultList();
 		
 	}
-	
-	
-
 }

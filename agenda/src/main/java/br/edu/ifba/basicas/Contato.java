@@ -1,6 +1,7 @@
 package br.edu.ifba.basicas;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-
+@Entity
 public class Contato implements Serializable {
 	
 	/**
@@ -22,18 +23,21 @@ public class Contato implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	private String observacao;
 	
-
+	@OneToOne (cascade=CascadeType.PERSIST)
 	private Endereco endereco;
 	
-
+	@ManyToOne
+	@JoinColumn (name ="categoria_id", nullable=false)
 	private Categoria categoria;
 	
-
+	@OneToMany (cascade=CascadeType.PERSIST)
+	@JoinColumn (name ="contato_id")
 	private List<Telefone> telefones;
 
 	public Contato() {}
@@ -112,14 +116,5 @@ public class Contato implements Serializable {
 			this.getTelefones().add(telefone);
 			
 		}
-		
-		
-		
 	}
-	
-	
-	
-	
-	
-	
 }

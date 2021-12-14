@@ -13,43 +13,44 @@ public class ContatoDao {
 	
 	public void adicionaContato(Contato contato) {
 		
-	
+		em.getTransaction().begin();
+		em.persist(contato);
+		em.getTransaction().commit();
 		
 	}
 	
 	public Contato procurarContatoId(int id) {
 		
-		return null;
+		return em.find(Contato.class, id);
 		
 	}
 	
 	public List<Contato> listarContato(){
 		
-		return null;
+		return em.createQuery("select c from Contato c", Contato.class).getResultList();
+		
 	}
 	
 	public void atualizarContato(Contato c) {
 		
-	
+		em.getTransaction().begin();
+		em.merge(c);
+		em.getTransaction().commit();
 		
 	}
 	
 	public void removerContato(Contato c) {
 		
-	
+		em.getTransaction().begin();
+		em.remove(c);
+		em.getTransaction().commit();
 		
 	}
 	
 	public List<Contato> procurarContatoNome(String nome) {
 		
-		
-		
-		return null;
+		TypedQuery<Contato> query = em.createQuery("SELECT c FROM Contato c WHERE c.nome = :n", Contato.class);     
+		return query.setParameter("n", nome).getResultList();
 		
 	}
-	
-	
-	
-	
-
 }
